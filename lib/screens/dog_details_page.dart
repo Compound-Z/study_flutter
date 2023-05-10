@@ -68,10 +68,29 @@ class _DogDetailPageState extends State<DogDetailPage> {
 
   Widget get submitRatingButton{
     return OutlinedButton(
-        onPressed: () => setState(() {
-          widget.dog.rating = _sliderValue.toInt();
-        }),
-        child: Text("Submit Rating"));
+        onPressed: () {
+          if(_sliderValue.toInt() < 5){
+            _showError;
+          }else{
+            setState(() {
+              widget.dog.rating = _sliderValue.toInt();
+            });
+          }
+        },
+        child: const Text("Submit Rating"));
+  }
+
+  Future get _showError async {
+    return showDialog(context: context,
+        builder: (context){
+          return AlertDialog(
+            title: Text("Error!"),
+            content: Text("Rating value must be greater than 5. Please rate again!"),
+            actions: [
+              ElevatedButton(onPressed: () => Navigator.of(context).pop(), child: Text("OK"))
+            ],
+          );
+        });
   }
 
   Widget get dogImage {

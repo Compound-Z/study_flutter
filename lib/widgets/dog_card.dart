@@ -70,7 +70,7 @@ class DogCardState extends State<DogCard> {
       firstChild: placeholder,
       secondChild: dogAvatar,
       crossFadeState: renderUrl == null ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-      duration:  Duration(milliseconds: 1000),
+      duration:  Duration(milliseconds: 500),
     );
 
     return crossFade;

@@ -22,8 +22,6 @@ class _DogFormState extends State<DogForm>{
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add a new pup"),
-        actions: [
-        ],
       ),
       body: dogForm,
     );
@@ -65,14 +63,10 @@ class _DogFormState extends State<DogForm>{
               ),
             ),
             Padding(padding: const EdgeInsets.only(bottom: 8),
-              child: Builder(
-                  builder: (context) {
-                    return FilledButton(
+              child: FilledButton(
                         onPressed: handleAddPup,
                         child: const Text("Add pup"),
-                    );
-                  }
-              )
+                    )
             ),
           ],
         ));
@@ -80,7 +74,9 @@ class _DogFormState extends State<DogForm>{
 
   handleAddPup() {
     if(txtNameCtrl.text.isEmpty){
-      print("Pup's name is empty!!!");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Empty name!!!"))
+      );
       return;
     }
 
